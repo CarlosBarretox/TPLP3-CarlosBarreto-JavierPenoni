@@ -2,6 +2,6 @@
 extern "C" { 
 #endif  
 extern double reciprocal (int i);  
-#ifdef __cplusplus
+#ifdef __cplusplus  
 }  
 #endif
