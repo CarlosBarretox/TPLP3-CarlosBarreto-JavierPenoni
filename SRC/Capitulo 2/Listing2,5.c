@@ -1,5 +1,7 @@
 #include <stdlib.h>
+#include <sys/stat.h>
 #include <unistd.h>
+#include <stdio.h>
 /* A handle for a temporary file created with write_temp_file. In
  this implementation, it's just a file descriptor. */
 typedef int temp_file_handle;
@@ -44,3 +46,21 @@ char* read_temp_file (temp_file_handle temp_file, size_t* length)
  close (fd);
  return buffer;
 } 
+int main() {
+    printf("Probando funciones de archivos temporales...\n");
+    char test_data[] = "Hola Mundo desde Git Bash!";
+    size_t original_length = sizeof(test_data);
+    printf("Escribiendo %zu bytes en archivo temporal...\n", original_length);
+    temp_file_handle handle = write_temp_file(test_data, original_length);
+    printf("Leyendo desde archivo temporal...\n");
+    size_t read_length;
+    char* read_data = read_temp_file(handle, &read_length);
+    printf("\nResultados:\n");
+    printf("Original: %s\n", test_data);
+    printf("Leído:    %s\n", read_data);
+    printf("Longitud original: %zu\n", original_length);
+    printf("Longitud leída:    %zu\n", read_length);
+    free(read_data);
+    printf("Prueba completada exitosamente!\n");
+    return 0;
+}

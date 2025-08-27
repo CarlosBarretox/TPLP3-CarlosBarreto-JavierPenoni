@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <stdio.h>
 char* read_from_file (const char* filename, size_t length)
 {
  char* buffer;
@@ -30,4 +31,14 @@ char* read_from_file (const char* filename, size_t length)
  /* Everything's fine. Close the file and return the buffer. */
  close (fd);
  return buffer;
-} 
+}
+int main() {
+    char* data = read_from_file("test.txt", 50);
+    if (data != NULL) {
+        printf("Lectura exitosa: %s\n", data);
+        free(data);
+    } else {
+        printf("Error al leer el archivo\n");
+    }
+    return 0;
+}

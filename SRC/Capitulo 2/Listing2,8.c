@@ -1,4 +1,6 @@
+#include <stdio.h>
+int f();
 int main ()
 {
- return f ();
+ printf("%d",f ());
 } 
